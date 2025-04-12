@@ -1,6 +1,40 @@
 # database
 ## Концептуальная модель
-![conceptual models](https://github.com/user-attachments/assets/b1a53138-ffbc-4ec8-8721-fbbfc5c82ee7)
+```mermaid
+erDiagram
+    Movies {
+    }
+
+    Halls {
+    }
+
+    Sessions {
+    }
+
+    Clients {
+    }
+
+    Employees {
+    }
+
+    Tickets {
+    }
+
+    Reviews {
+    }
+
+    SessionHistory {
+    }
+
+    Movies ||--o{ Sessions : ""
+    Halls ||--o{ Sessions : ""
+    Sessions ||--o{ Tickets : ""
+    Clients ||--o{ Tickets : ""
+    Clients ||--o{ Reviews : ""
+    Movies ||--o{ Reviews : ""
+    Sessions ||--o{ SessionHistory : ""
+    Employees ||--o{ Tickets : ""
+```
 ### Описание таблиц
 Кинотеатр (система бронирования билетов) Таблицы: Фильмы Залы Сеансы Билеты Клиенты Сотрудники Отзывы 
 
