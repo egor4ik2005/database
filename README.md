@@ -148,7 +148,7 @@ SCD 2 позволяет формировать отчёты с учётом т�
 | valid_from        | Дата начала действия | TIMESTAMP     | NOT NULL                              |
 | valid_to          | Дата окончания       | TIMESTAMP     | NULL если актуально                   |
 
-### [ddl.sql](scripts/ddl.sql)
+### [ddl.sql](ddl.sql)
 ```postgresql
 -- Таблица: Фильмы
 CREATE TABLE movies (
