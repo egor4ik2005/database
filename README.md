@@ -187,7 +187,7 @@ SCD 2 позволяет формировать отчёты с учётом т�
 ### [ddl.sql](ddl.sql)
 ```postgresql
 -- Таблица: Фильмы
-CREATE TABLE movies (
+CREATE TABLE IF NOT EXISTS movies (
     movie_id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     genre TEXT NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE movies (
 );
 
 -- Таблица: Залы
-CREATE TABLE halls (
+CREATE TABLE IF NOT EXISTS halls (
     hall_id SERIAL PRIMARY KEY,
     seats_count INTEGER NOT NULL CHECK (seats_count > 0),
     screen_type TEXT NOT NULL,
@@ -204,7 +204,7 @@ CREATE TABLE halls (
 );
 
 -- Таблица: Сеансы
-CREATE TABLE sessions (
+CREATE TABLE IF NOT EXISTS sessions (
     session_id SERIAL PRIMARY KEY,
     movie_id INTEGER REFERENCES movies(movie_id),
     hall_id INTEGER REFERENCES halls(hall_id),
@@ -213,7 +213,7 @@ CREATE TABLE sessions (
 );
 
 -- Таблица: Клиенты
-CREATE TABLE clients (
+CREATE TABLE IF NOT EXISTS clients (
     client_id SERIAL PRIMARY KEY,
     full_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
@@ -223,7 +223,7 @@ CREATE TABLE clients (
 );
 
 -- Таблица: Сотрудники
-CREATE TABLE employees (
+CREATE TABLE IF NOT EXISTS employees (
     employee_id SERIAL PRIMARY KEY,
     full_name TEXT NOT NULL,
     position TEXT NOT NULL,
@@ -232,7 +232,7 @@ CREATE TABLE employees (
 );
 
 -- Таблица: Билеты
-CREATE TABLE tickets (
+CREATE TABLE IF NOT EXISTS tickets (
     ticket_id SERIAL PRIMARY KEY,
     session_id INTEGER REFERENCES sessions(session_id),
     client_id INTEGER REFERENCES clients(client_id),
@@ -242,7 +242,7 @@ CREATE TABLE tickets (
 );
 
 -- Таблица: Отзывы
-CREATE TABLE reviews (
+CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,
     client_id INTEGER REFERENCES clients(client_id),
     movie_id INTEGER REFERENCES movies(movie_id),
@@ -252,7 +252,7 @@ CREATE TABLE reviews (
 );
 
 -- Таблица: История изменений сеансов (SCD Type 2)
-CREATE TABLE session_history (
+CREATE TABLE IF NOT EXISTS session_history (
     history_id SERIAL PRIMARY KEY,
     session_id INTEGER REFERENCES sessions(session_id),
     ticket_price NUMERIC(8,2) NOT NULL,
